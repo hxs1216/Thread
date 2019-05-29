@@ -1,4 +1,3 @@
-package com.biyao;
 
 /**
  * @Author:hxs
@@ -8,7 +7,7 @@ public class MyTicketOffice{
 
     public static void main(String[] args) {
         TicketOffice ticketOffice = new TicketOffice(new Object(),20);
-        new Thread(ticketOffice,"窗口1").start(); //模拟三个窗口同时抢票
+        new Thread(ticketOffice,"窗口1").start(); //模拟三个窗口同时抢票,通用new Object参数
         new Thread(ticketOffice,"窗口2").start();
         new Thread(ticketOffice,"窗口3").start();
     }
