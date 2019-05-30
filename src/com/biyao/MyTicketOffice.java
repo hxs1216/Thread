@@ -1,4 +1,4 @@
-
+package com.biyao;
 /**
  * @Author:hxs
  * @Description:三个售票窗口同时出售20张票

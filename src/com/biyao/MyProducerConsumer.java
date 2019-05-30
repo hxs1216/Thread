@@ -1,3 +1,4 @@
+package com.biyao;
 /**
  * @Author:hxs
  * @Description:多生产多消费
@@ -5,10 +6,12 @@
 public class MyProducerConsumer {
     public static void main(String[] args) {
         MyResource resource = new MyResource();
-        Thread thread1 = new Thread(new producer(resource)); //生产者1
-        Thread thread2 = new Thread(new producer(resource)); //生产者2
-        Thread thread3 = new Thread(new consumer(resource)); //消费者1
-        Thread thread4 = new Thread(new consumer(resource)); //消费者2
+        producer producer = new producer(resource);
+        consumer consumer = new consumer(resource);
+        Thread thread1 = new Thread(producer); //生产者1
+        Thread thread2 = new Thread(producer); //生产者2
+        Thread thread3 = new Thread(consumer); //消费者1
+        Thread thread4 = new Thread(consumer); //消费者2
         thread1.start();
         thread2.start();
         thread3.start();
@@ -32,7 +35,7 @@ class MyResource{
         this.name = name + count;
         count++;
         System.out.println(Thread.currentThread().getName()+"...生产"+this.name);
-        flag=true;
+        flag = true;
         notifyAll(); //防止死锁问题，唤醒线程池中的全部线程
     }
 
@@ -55,7 +58,7 @@ class MyResource{
 class producer implements Runnable{
     private MyResource resource; //访问同一个资源
     public producer(MyResource resource){
-        resource = resource;
+        this.resource = resource;
     }
     @Override
     public void run() {
@@ -70,7 +73,7 @@ class consumer implements Runnable{
 
     private MyResource resource; //访问同一个资源
     public consumer(MyResource resource){
-        resource = resource;
+        this.resource = resource;
     }
 
     @Override
