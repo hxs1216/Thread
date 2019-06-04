@@ -5,7 +5,6 @@ import java.util.concurrent.CountDownLatch;
 /**
  * @Author:hxs
  * @Description:闭锁：可以用来确保某些活动直到其他活动都完成才继续执行
- *
  */
 public class MyCountDownLatch {
     public static void main(String[] args) {
